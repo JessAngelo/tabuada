@@ -8,9 +8,10 @@ function gerarTabuada(tabuada, sequencia) {
         resultado += `<li>${tabuada} x ${i} = ${tabuada * i}</li>`;
     }
     resultado += '</ul>';
+ 
+    resultado += '<footer><p>Desenvolvido por: Jéssica Maria de Angelo</p></footer>';
     return resultado;
 }
-
 
 function validarEntrada(tabuada, sequencia) {
     if (isNaN(tabuada) || isNaN(sequencia) || tabuada < 0 || sequencia < 0) {
@@ -26,23 +27,10 @@ app.get('/', (req, res) => {
     let sequencia = parseInt(req.query.sequencia) || 10;  
 
 
-    if (!isNaN(tabuada)) {
-        const resultado = gerarTabuada(tabuada, sequencia);
-        res.send(`
-          <html>
-            <head><title>Tabuada do ${tabuada}</title></head>
-            <body>
-            <br>
-            <h1>Feito por Jéssica Maria de Angelo - 10442417613 </h1> 
-              <h1>Tabuada do ${tabuada}</h1>
-              <p>${resultado}</p>
-            </body>
-          </html>
-        `);
-      } else {
-        res.send('Erro: Informe um número válido para a tabuada na URL. Exemplo: ?tabuada=3&sequencia=25');
-      }
-    });
+    if (!validarEntrada(tabuada, sequencia)) {
+        return res.status(400).send('Erro: Informe um número válido para a tabuada na URL. Exemplo: ?tabuada=3&sequencia=25');
+    }
+
 
     let htmlContent = gerarTabuada(tabuada, sequencia);
 
