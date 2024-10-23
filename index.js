@@ -26,10 +26,23 @@ app.get('/', (req, res) => {
     let sequencia = parseInt(req.query.sequencia) || 10;  
 
 
-    if (!validarEntrada(tabuada, sequencia)) {
-        return res.status(400).send('<h1>Erro: parâmetros inválidos. Insira números válidos para tabuada e sequencia.</h1>');
-    }
-
+    if (!isNaN(tabuada)) {
+        const resultado = gerarTabuada(tabuada, sequencia);
+        res.send(`
+          <html>
+            <head><title>Tabuada do ${tabuada}</title></head>
+            <body>
+            <br>
+            <h1>Feito por Jéssica Maria de Angelo - 10442417613 </h1> 
+              <h1>Tabuada do ${tabuada}</h1>
+              <p>${resultado}</p>
+            </body>
+          </html>
+        `);
+      } else {
+        res.send('Erro: Informe um número válido para a tabuada na URL. Exemplo: ?tabuada=3&sequencia=25');
+      }
+    });
 
     let htmlContent = gerarTabuada(tabuada, sequencia);
 
