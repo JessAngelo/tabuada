@@ -12,7 +12,7 @@ function gerarTabuada(numero, sequencia) {
 }
 
 
-app.get('/', (req, res) => {
+app.get('/tabuada', (req, res) => {
 
   const tabuada = parseInt(req.query.tabuada);
   const sequencia = parseInt(req.query.sequencia) || 10;
@@ -24,6 +24,9 @@ app.get('/', (req, res) => {
       <html>
         <head><title>Tabuada do ${tabuada}</title></head>
         <body>
+          <h1>Feito por: Jéssica Maria de Angelo </h1>
+          <br>
+          <br>
           <h1>Tabuada do ${tabuada}</h1>
           <p>${resultado}</p>
         </body>
