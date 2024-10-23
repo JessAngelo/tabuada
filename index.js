@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Função para gerar a tabuada
+
 function gerarTabuada(numero, sequencia) {
   let resultado = '';
   for (let i = 0; i <= sequencia; i++) {
@@ -11,12 +11,13 @@ function gerarTabuada(numero, sequencia) {
   return resultado;
 }
 
+
 app.get('/', (req, res) => {
-  // Captura os parâmetros da URL
+
   const tabuada = parseInt(req.query.tabuada);
   const sequencia = parseInt(req.query.sequencia) || 10;
 
-  // Verifica se o parâmetro "tabuada" foi informado corretamente
+  
   if (!isNaN(tabuada)) {
     const resultado = gerarTabuada(tabuada, sequencia);
     res.send(`
@@ -33,5 +34,5 @@ app.get('/', (req, res) => {
   }
 });
 
-// Inicia o servidor
+
 app.listen
